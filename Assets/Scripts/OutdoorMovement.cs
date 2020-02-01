@@ -8,6 +8,8 @@ public class OutdoorMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
     public bool indoors = true;
+    private bool floor = false;
+    private bool ladder = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +25,34 @@ public class OutdoorMovement : MonoBehaviour
 
         horizontal = (int)Input.GetAxisRaw("Horizontal");
         vertical = (int)Input.GetAxisRaw("Vertical");
+        Vector3 vel = rb2D.velocity;
         if(!indoors)
-        rb2D.velocity = new Vector3(rb2D.velocity.x+horizontal, rb2D.velocity.y+vertical, 0);
+        rb2D.velocity = new Vector3(vel.x+horizontal, vel.y+vertical, 0);
         else {
-            rb2D.velocity = new Vector3(rb2D.velocity.x+horizontal>MAX_INDOOR_SPEED?MAX_INDOOR_SPEED:rb2D.velocity.x+horizontal<-1*MAX_INDOOR_SPEED?-1*MAX_INDOOR_SPEED:rb2D.velocity.x+horizontal,rb2D.velocity.y<=0&&vertical>0?30*vertical:rb2D.velocity.y,0);
+            rb2D.velocity = new Vector3(vel.x+horizontal>MAX_INDOOR_SPEED?MAX_INDOOR_SPEED:vel.x+horizontal<-1*MAX_INDOOR_SPEED?-1*MAX_INDOOR_SPEED:vel.x+horizontal,floor?30*vertical:vel.y,0);
+            if(ladder&&vertical!=0) {
+                rb2D.velocity = new Vector3(rb2D.velocity.x,0,0);
+                rb2D.MovePosition(new Vector2(rb2D.position.x, rb2D.position.y+Input.GetAxisRaw("Vertical")/5));
+            }
+            if(floor&&vertical>0)floor=false;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.tag=="Ladder") {
+            ladder = true;
+        }
+    }
+    void OnCollisionStay2D(Collision2D other){
+        if(other.collider.tag=="Floor") floor=true;
+    }
+    void OnCollisionExit2D(Collision2D   other){
+      if(other.collider.tag == "Floor"){
+          floor = false;
+      }
+    }
+    private void OnTriggerExit2D(Collider2D collision) {
+        if(collision.tag=="Ladder") {
+            ladder = false;
         }
     }
 }
