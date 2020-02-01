@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Room : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
+/*    private BoxCollider2D boxCollider;
     public float oxygenLevel = 100;
     public List<Tool> toolList;
     public List<Damage> damageList;
@@ -117,5 +117,5 @@ public class Room : MonoBehaviour
         if(sparkList.Count < 2)
             sparkList.Add(spark);
     }
-
+*/
 }
