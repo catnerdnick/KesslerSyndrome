@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damage : MonoBehaviour
+public class Tool : MonoBehaviour
 {
-    public int O2Leakage;
+
+
+
     // Start is called before the first frame update
     void Start()
     {

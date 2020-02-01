@@ -6,8 +6,9 @@ using Random = UnityEngine.Random;
 public class Room : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
+    private SpriteRenderer renderer;
     public float oxygenLevel = 100;
-    public List<Tool> toolList;
+//    public List<Tool> toolList;
     public List<Damage> damageList;
     public List<Spark> sparkList;
     public bool isOnFire;
@@ -15,8 +16,9 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        boxCollider = GetComponents<BoxCollider2D>();
-        oxygen = 100;
+        boxCollider = GetComponent<BoxCollider2D>();
+        renderer = GetComponent<SpriteRenderer>();
+        oxygenLevel = 100;
         isOnFire = false;
         damageList = new List<Damage>();
         sparkList = new List<Spark>();
@@ -30,7 +32,7 @@ public class Room : MonoBehaviour
         {
             foreach(Damage damage in damageList)
             {
-                oxygenLevel -= damage.leak;
+                oxygenLevel -= damage.O2Leakage;
             }
         }
 
@@ -45,9 +47,9 @@ public class Room : MonoBehaviour
                     //TODO: instantiate the fire
 
                     //now that there's fire, destroy all the sparks
-                    foreach (Spark spark in sparkList)
+                    foreach (Spark sparky in sparkList)
                     {
-                        Destroy(spark);
+                        Destroy(sparky);
                         sparkList.Clear();
                     }
                     break;
@@ -59,7 +61,7 @@ public class Room : MonoBehaviour
         if(isOnFire)
         {
             //think this would be a pretty quick drain per frame
-            oxygenLevel -= 0.5;
+            oxygenLevel -= 0.05f;
         }
 
 
@@ -72,27 +74,27 @@ public class Room : MonoBehaviour
         }
 
 
-        //TODO: set the color of the room based oquaternn the oxygen level 
-        if(oxygenLevel = 100)
-        {
-            //room.bgcolor = pea green
-        }
-        else if(oxygenLevel > 80)
-        {
-            //pretty nice green
-        }
-        else if(oxygenLevel > 40)
-        {
-            //yellowish
-        }
-        else if(oxygenLevel > 5)
-        {
-            //red
-        }
-        else
-        {
-            //black
-        }
+        ////TODO: set the color of the room based on the oxygen level 
+        //if(oxygenLevel == 100)
+        //{
+        //    renderer.color = Color.green;
+        //}
+        //else if(oxygenLevel > 80)
+        //{
+        //    renderer.color = Color.cyan;
+        //}
+        //else if(oxygenLevel > 40)
+        //{
+        //    renderer.color = Color.yellow;
+        //}
+        //else if(oxygenLevel > 5)
+        //{
+        //    renderer.color = Color.red;
+        //}
+        //else
+        //{
+        //    renderer.color = Color.black;
+        //}
 
 
     }
