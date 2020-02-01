@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OutdoorMovement : MonoBehaviour
 {
-    private const int MAX_INDOOR_SPEED = 30;
+    private const int MAX_INDOOR_SPEED = 4;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
     public bool indoors = true;
@@ -27,12 +27,12 @@ public class OutdoorMovement : MonoBehaviour
         vertical = (int)Input.GetAxisRaw("Vertical");
         Vector3 vel = rb2D.velocity;
         if(!indoors)
-        rb2D.velocity = new Vector3(vel.x+horizontal, vel.y+vertical, 0);
+        rb2D.velocity = new Vector3(vel.x+Input.GetAxisRaw("Horizontal")/5, vel.y+Input.GetAxisRaw("Vertical")/5, 0);
         else {
-            rb2D.velocity = new Vector3(vel.x+horizontal>MAX_INDOOR_SPEED?MAX_INDOOR_SPEED:vel.x+horizontal<-1*MAX_INDOOR_SPEED?-1*MAX_INDOOR_SPEED:vel.x+horizontal,floor?30*vertical:vel.y,0);
+            rb2D.velocity = new Vector3(vel.x+horizontal>MAX_INDOOR_SPEED?MAX_INDOOR_SPEED:vel.x+horizontal<-1*MAX_INDOOR_SPEED?-1*MAX_INDOOR_SPEED:vel.x+horizontal,floor?6*vertical:vel.y,0);
             if(ladder&&vertical!=0) {
                 rb2D.velocity = new Vector3(rb2D.velocity.x,0,0);
-                rb2D.MovePosition(new Vector2(rb2D.position.x, rb2D.position.y+Input.GetAxisRaw("Vertical")/5));
+                rb2D.MovePosition(new Vector2(rb2D.position.x, rb2D.position.y+Input.GetAxisRaw("Vertical")/13));
             }
             if(floor&&vertical>0)floor=false;
         }
