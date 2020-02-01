@@ -2,17 +2,17 @@
 using System.Collections;
 
 
-public class ScrollerTest : MonoBehaviour
+public class Intro : MonoBehaviour
 {
-    public string[] intro;
+    public string[] intro = { "line 1", "line 2" };
     public float off;
     public float speed = 100;
 
 
- public void OnGUI()
+    public void OnGUI()
  {
      off += Time.deltaTime * speed;
-     for (int i = 0; i &lt; intro.Length; i++)
+     for (int i = 0; i < intro.Length; i++)
      {
          float roff = (intro.Length*-20) + (i*20 + off);
          float alph = Mathf.Sin((roff/Screen.height)*180*Mathf.Deg2Rad);
