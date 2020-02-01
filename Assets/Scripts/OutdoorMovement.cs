@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OutdoorMovement : MonoBehaviour
 {
+    private const int MAX_INDOOR_SPEED = 30;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
     public bool indoors = true;
@@ -25,7 +26,7 @@ public class OutdoorMovement : MonoBehaviour
         if(!indoors)
         rb2D.velocity = new Vector3(rb2D.velocity.x+horizontal, rb2D.velocity.y+vertical, 0);
         else {
-            rb2D.velocity = new Vector3(rb2D.velocity.x+horizontal>5?5:rb2D.velocity.x+horizontal<-5?-5:rb2D.velocity.x+horizontal,rb2D.velocity.y<=0&&vertical>-0?10*vertical:0,0);
+            rb2D.velocity = new Vector3(rb2D.velocity.x+horizontal>MAX_INDOOR_SPEED?MAX_INDOOR_SPEED:rb2D.velocity.x+horizontal<-1*MAX_INDOOR_SPEED?-1*MAX_INDOOR_SPEED:rb2D.velocity.x+horizontal,rb2D.velocity.y<=0&&vertical>0?30*vertical:rb2D.velocity.y,0);
         }
     }
 }
