@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
                     ship.GetComponent<SpriteRenderer>().bounds.max.y),
                     4);
             Instantiate(damageLine, newPosition,Quaternion.Euler(0, 0, Random.Range(0,180)));
-            Debug.Log(newPosition);
-            
         }
     }
 }
