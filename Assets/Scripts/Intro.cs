@@ -49,11 +49,11 @@ public class Intro : MonoBehaviour
             float alph = Mathf.Sin((roff / Screen.height) * 180 * Mathf.Deg2Rad);
 
             guiStyle.fontSize = (int)(roff / 10); //change the font size
-
-            GUI.color = new Color(1, 1, 1, alph);
+            guiStyle.normal.textColor = new Color(255, 255, 255, alph);
+            GUI.color = new Color(255, 255, 255, alph);
             print("roff = " + roff);
             GUI.Label(new Rect(0, roff, Screen.width, 20), intro[i], guiStyle);
-            GUI.color = new Color(1, 1, 1, 1);
+            GUI.color = new Color(255, 255, 255, 1);
             if ((i == intro.Length-1) && (roff <= 0))
             {
                 SceneManager.LoadScene("Menu");
