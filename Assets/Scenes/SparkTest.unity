@@ -542,6 +542,10 @@ MonoBehaviour:
   itemGetClip: {fileID: 8300000, guid: 9c5ea0816c8dde847a13f3ea2704ab52, type: 3}
   damageClip: {fileID: 8300000, guid: b2fe390c6030a5f49b3dd3391ff79911, type: 3}
   drillClip: {fileID: 8300000, guid: 2e9944cc3a12fed43833a762c04b79ee, type: 3}
+  song1: {fileID: 8300000, guid: f6018a561f0704743a10149a8ca6de62, type: 3}
+  song2: {fileID: 8300000, guid: 371277b045e1165499ce7f79688b758a, type: 3}
+  song3: {fileID: 8300000, guid: 8ea16fbf79daf2d4b94d245664ae1b0d, type: 3}
+  songs: []
   lastMove: stop
 --- !u!82 &413415851
 AudioSource:
