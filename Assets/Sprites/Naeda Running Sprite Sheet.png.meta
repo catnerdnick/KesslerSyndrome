@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e85d4d20d8ff2784790d3af087304308
+guid: f581283e9ea4a2c48bc3eae7f05b0c97
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -17,9 +17,6 @@ TextureImporter:
   - first:
       213: -8221963513542214293
     second: Naeda Running Sprite Sheet_4
-  - first:
-      213: -1601141341769100120
-    second: Naeda Running Sprite Sheet_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:

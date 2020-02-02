@@ -3,7 +3,8 @@ guid: 88dcf5d5ea546ed468eb7486d6bc9d54
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - airlockQuick: {fileID: 8300000, guid: f16b609b8f8de8f438e888c6816755b5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -7,11 +7,14 @@ public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     private float nextDamage;
+    private float minTime = 10;
+    private float maxTime = 15;
     public GameObject ship;
     public GameObject damageLine;
     public GameObject damageSprite;
-    public GameObject holeSprite;
+    public HoleInShip holeSprite;
     public GameObject[] rooms;
+    public HealthBar bar;
     void Start()
     {
         nextDamage = Random.Range(1,1);
@@ -22,7 +25,9 @@ public class GameManager : MonoBehaviour
     {
         nextDamage -=Time.deltaTime;
         if(nextDamage <0) {
-            nextDamage = Random.Range(10,15);
+            nextDamage = Random.Range(minTime,maxTime);
+            
+            if(minTime>0)minTime -=1; if(maxTime>2)maxTime-=1;
             Vector3 newPosition = new Vector3(
                 Random.Range(
                     ship.GetComponent<SpriteRenderer>().bounds.min.x,
@@ -42,11 +47,14 @@ public class GameManager : MonoBehaviour
                 startingPoint,
                 dir,
                 10000000);
+            SoundManager.instance.HitClip();
             foreach(RaycastHit2D hit in hits){
                 if(hit.collider.tag == "Exterior") {
-                    GameObject hole = Instantiate(holeSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
+                    HoleInShip hole = Instantiate(holeSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
                     GameObject go = Instantiate(damageSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
+                    hole.bar = bar;
                     go.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(Mathf.Deg2Rad*angle)/3,Mathf.Sin(Mathf.Deg2Rad*angle));
+                    bar.loseHealth();
                 }
             }
         }
