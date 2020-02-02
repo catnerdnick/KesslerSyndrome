@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: f581283e9ea4a2c48bc3eae7f05b0c97
+guid: 9ff43f37ab82f464ea3527eea032e1c2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3613562080292843045
-    second: Naeda Running Sprite Sheet_0
+      213: 6964007368465237328
+    second: Naeda Standing Sprite Sheet_0
   - first:
-      213: 2877441106326883105
-    second: Naeda Running Sprite Sheet_1
-  - first:
-      213: 8720100074996164709
-    second: Naeda Running Sprite Sheet_2
-  - first:
-      213: 2868942359698280173
-    second: Naeda Running Sprite Sheet_3
-  - first:
-      213: -8221963513542214293
-    second: Naeda Running Sprite Sheet_4
+      213: 3794425870061397567
+    second: Naeda Standing Sprite Sheet_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -101,70 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Naeda Running Sprite Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 136
-        width: 90
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd1d256fe6c0addc0800000000000000
-      internalID: -3613562080292843045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Naeda Running Sprite Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 136
-        width: 90
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12b88bcd079bee720800000000000000
-      internalID: 2877441106326883105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Naeda Running Sprite Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 136
-        width: 90
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 568e00031d4040970800000000000000
-      internalID: 8720100074996164709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Naeda Running Sprite Sheet_3
+      name: Naeda Standing Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -178,8 +106,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dee03e630e780d720800000000000000
-      internalID: 2868942359698280173
+      spriteID: 055c2920ecf15a060800000000000000
+      internalID: 6964007368465237328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Naeda Standing Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 90
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36ef8f993288a430800000000000000
+      internalID: 3794425870061397567
       vertices: []
       indices: 
       edges: []
