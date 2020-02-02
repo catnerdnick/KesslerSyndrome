@@ -23,6 +23,7 @@ public class HoleInShip : MonoBehaviour
             Debug.Log("Chonker!");
         } if(collision.tag=="Welder" && chunk !=null) {
             Destroy(chunk);
+            SoundManager.instance.FixClip();
             Destroy(this.gameObject);
             Debug.Log("Welder!");
         }

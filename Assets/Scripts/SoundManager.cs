@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip playerLadder;
     public AudioClip playerJump;
     public AudioClip itemGetClip;
+    public AudioClip damageClip;
+    public AudioClip drillClip;
     public string lastMove = "stop";
     public static SoundManager instance = null;
 
@@ -59,6 +61,16 @@ public class SoundManager : MonoBehaviour
     public void ItemGet()
     {
         PlaySingle(itemGetClip);
+    }
+
+    public void HitClip()
+    {
+        PlaySingle(damageClip);
+    }
+
+    public void FixClip()
+    {
+        PlaySingle(drillClip);
     }
 
     public void PlayerMovement(string moveType)

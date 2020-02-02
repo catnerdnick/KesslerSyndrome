@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
                 startingPoint,
                 dir,
                 10000000);
+            SoundManager.instance.HitClip();
             foreach(RaycastHit2D hit in hits){
                 if(hit.collider.tag == "Exterior") {
                     GameObject hole = Instantiate(holeSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
