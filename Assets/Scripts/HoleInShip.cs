@@ -21,6 +21,7 @@ public class HoleInShip : MonoBehaviour
         if(obj && obj.chonk && obj.toolSound) {
             Destroy(obj.chunk);
             Destroy(this.gameObject);
+            SoundManager.instance.FixClip();
             obj.chonk=false;
         }
     }
