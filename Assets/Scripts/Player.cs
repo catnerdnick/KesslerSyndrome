@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
                 rb2D.velocity = new Vector3(rb2D.velocity.x,0,0);
                 rb2D.MovePosition(new Vector2(rb2D.position.x, rb2D.position.y+Input.GetAxisRaw("Vertical")/13));
                 SoundManager.instance.PlayerMovement("ladder");
-                print("I got a ladder");
             }
             if (floor && vertical > 0)
             {
@@ -79,7 +78,6 @@ public class Player : MonoBehaviour
                 animator.SetBool("Moving", false);
                 if(!ladder || vertical == 0)
                 {
-                    print("I did this thing");
                     SoundManager.instance.PlayerMovement("stop");
                 }
                 
