@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     public bool indoors = true;
     private bool floor = false;
     private bool ladder = false;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,9 +30,18 @@ public class Player : MonoBehaviour
         horizontal = (int)Input.GetAxisRaw("Horizontal");
         vertical = (int)Input.GetAxisRaw("Vertical");
         Vector3 vel = rb2D.velocity;
-        if(!indoors)
+        if(!indoors) {
+        animator.SetBool("Inside", false);
         rb2D.velocity = new Vector3(vel.x+Input.GetAxisRaw("Horizontal")/5, vel.y+Input.GetAxisRaw("Vertical")/5, 0);
-        else {
+        if (rb2D.velocity.x <-.2) {
+            animator.SetBool("Moving", true);
+            spriteRenderer.flipX = true;
+        }else if (rb2D.velocity.x >.2) {
+            animator.SetBool("Moving", true);
+            spriteRenderer.flipX = false;
+        }
+        } else {
+            animator.SetBool("Inside", true);
             rb2D.velocity = new Vector3(vel.x+horizontal>MAX_INDOOR_SPEED?MAX_INDOOR_SPEED:vel.x+horizontal<-1*MAX_INDOOR_SPEED?-1*MAX_INDOOR_SPEED:vel.x+horizontal,floor?18*vertical:vel.y,0);
             if(ladder&&vertical!=0) {
                 rb2D.velocity = new Vector3(rb2D.velocity.x,0,0);
@@ -38,18 +49,24 @@ public class Player : MonoBehaviour
             }
             if(floor&&vertical>0)floor=false;
             if (rb2D.velocity.x <-.2) {
+                animator.SetBool("Moving", true);
                 spriteRenderer.flipX = true;
             }else if (rb2D.velocity.x >.2) {
+                animator.SetBool("Moving", true);
                 spriteRenderer.flipX = false;
+            } else {
+                animator.SetBool("Moving", false);
             }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
             ladder = true;
-        } if(collision.tag=="Tool") {
+        } if(collision.tag=="Welder") {
             collision.gameObject.transform.SetParent(this.transform);
-            Debug.Log("hit tool");
+        } if(collision.tag=="ShipChunk") {
+            collision.gameObject.transform.SetParent(this.transform);
+            Debug.Log("Collided with chunk");
         }
     }
     void OnCollisionStay2D(Collision2D other){

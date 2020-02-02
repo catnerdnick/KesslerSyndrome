@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject ship;
     public GameObject damageLine;
     public GameObject damageSprite;
+    public GameObject holeSprite;
     public GameObject[] rooms;
     void Start()
     {
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
                 10000000);
             foreach(RaycastHit2D hit in hits){
                 if(hit.collider.tag == "Exterior") {
+                    GameObject hole = Instantiate(holeSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
                     GameObject go = Instantiate(damageSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
                     go.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(Mathf.Deg2Rad*angle)/3,Mathf.Sin(Mathf.Deg2Rad*angle));
                 }
