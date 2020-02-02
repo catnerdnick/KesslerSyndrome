@@ -2,12 +2,13 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
     public string[] intro;
     public float off = Screen.height;
-    public float speed = 10000;
+    public float speed = .0025f;
     public GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
     void Start()
@@ -16,7 +17,7 @@ public class Intro : MonoBehaviour
         intro = new string[] {
             "The MSS thrusters are offline waiting for",
             "repair parts on the supply shuttle. Our",
-            "astronaut Major Naeta is on the MSS alone",
+            "astronaut acting commander Naeta is on the MSS alone",
             "waiting for the replacement crew.",
             " ",
             "A defunct Russian satellite has collided",
@@ -38,13 +39,13 @@ public class Intro : MonoBehaviour
         guiStyle.alignment = TextAnchor.MiddleCenter;
 
         print("off = " + off);
-        off -= Time.deltaTime * speed * 25;
-  
+        off -= Time.deltaTime * speed;
+
         print("off = " + off);
         for (int i = 0; i < intro.Length; i++)
         {
- //           float roff = (intro.Length * -40) + ((i + 1) * 40 + off);
-            float roff =  ((i + 1) * 40 + off);
+            //           float roff = (intro.Length * -40) + ((i + 1) * 40 + off);
+            float roff = ((i + 1) * 40 + off);
             float alph = Mathf.Sin((roff / Screen.height) * 180 * Mathf.Deg2Rad);
 
             guiStyle.fontSize = (int)(roff / 10); //change the font size
@@ -53,6 +54,13 @@ public class Intro : MonoBehaviour
             print("roff = " + roff);
             GUI.Label(new Rect(0, roff, Screen.width, 20), intro[i], guiStyle);
             GUI.color = new Color(1, 1, 1, 1);
+            if ((i == intro.Length-1) && (roff <= 0))
+            {
+                SceneManager.LoadScene("Menu");
+            }
         }
+        System.Threading.Thread.Sleep(90);
+
+
     }
 }
