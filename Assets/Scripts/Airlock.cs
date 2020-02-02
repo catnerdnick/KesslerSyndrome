@@ -21,10 +21,11 @@ public class Airlock : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        OutdoorMovement obj = other.GetComponent<OutdoorMovement>();
+        Player obj = other.GetComponent<Player>();
+        if(obj) {
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector3(0,0,0);
         rb.gravityScale = rb.gravityScale>0?0:3;
-        obj.indoors = !obj.indoors;
+        obj.indoors = !obj.indoors;}
     }
 }
