@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     public bool indoors = true;
+    public AudioClip ladderClip;
+    public AudioClip jumpClip;
+    public AudioClip itemGetClip;
+    public AudioClip footstepClip;
+
     private bool floor = false;
     private bool ladder = false;
     private Animator animator;
@@ -46,14 +51,18 @@ public class Player : MonoBehaviour
             if(ladder&&vertical!=0) {
                 rb2D.velocity = new Vector3(rb2D.velocity.x,0,0);
                 rb2D.MovePosition(new Vector2(rb2D.position.x, rb2D.position.y+Input.GetAxisRaw("Vertical")/13));
+                SoundManager.instance.PlaySingle(ladderClip);
             }
             if(floor&&vertical>0)floor=false;
             if (rb2D.velocity.x <-.2) {
                 animator.SetBool("Moving", true);
                 spriteRenderer.flipX = true;
-            }else if (rb2D.velocity.x >.2) {
+                SoundManager.instance.PlaySingle(footstepClip);
+            }
+            else if (rb2D.velocity.x >.2) {
                 animator.SetBool("Moving", true);
                 spriteRenderer.flipX = false;
+                SoundManager.instance.PlaySingle(footstepClip);
             } else {
                 animator.SetBool("Moving", false);
             }
