@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
@@ -14,8 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject damageLine;
     public GameObject damageSprite;
     public HoleInShip holeSprite;
+    public Text timer;
     public GameObject[] rooms;
     public HealthBar bar;
+    private float time = 0f;
     void Start()
     {
         nextDamage = Random.Range(1,1);
@@ -23,13 +26,16 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        nextDamage -=Time.deltaTime;
+        nextDamage -=Time.fixedDeltaTime;
+        if(Time.timeScale >0)timer.text = time.ToString();
+        time+=Time.fixedDeltaTime;
+        //Debug.Log(timer.text);
         if(nextDamage <0) {
             nextDamage = Random.Range(minTime,maxTime);
             
-            if(minTime>0)minTime -=1; if(maxTime>2)maxTime-=1;
+            if(minTime>1)minTime -=1; if(maxTime>2)maxTime-=1;
             Vector3 newPosition = new Vector3(
                 Random.Range(
                     ship.GetComponent<SpriteRenderer>().bounds.min.x,

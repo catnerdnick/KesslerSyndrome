@@ -15,7 +15,7 @@ public class Asteroid : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timeleft-=Time.deltaTime;
         renderer.color = new Color(renderer.color.r,renderer.color.g,renderer.color.b,timeleft/timeOnScreen);

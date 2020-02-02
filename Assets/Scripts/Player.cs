@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         int horizontal = 0;
         int vertical = 0;
