@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         if(!indoors) {
         animator.SetBool("Inside", false);
             SoundManager.instance.PlayerMovement("stop");
-            rb2D.velocity = new Vector3(vel.x+Input.GetAxisRaw("Horizontal")/5, vel.y+Input.GetAxisRaw("Vertical")/5, 0);
+            rb2D.velocity = new Vector3(vel.x+Input.GetAxisRaw("Horizontal")/5*2, vel.y+Input.GetAxisRaw("Vertical")/5*2, 0);
         if (rb2D.velocity.x <-.2) {
             animator.SetBool("Moving", true);
             spriteRenderer.flipX = true;
