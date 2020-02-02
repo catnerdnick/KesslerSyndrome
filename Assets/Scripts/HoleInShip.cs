@@ -5,6 +5,7 @@ using UnityEngine;
 public class HoleInShip : MonoBehaviour
 {
     GameObject chunk = null;
+    public HealthBar bar;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class HoleInShip : MonoBehaviour
             Destroy(this.gameObject);
             SoundManager.instance.FixClip();
             obj.chonk=false;
+            bar.gainHealth();
         }
     }
 }
