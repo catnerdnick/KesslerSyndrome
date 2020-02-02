@@ -47,9 +47,11 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
             ladder = true;
-        } if(collision.tag=="Tool") {
+        } if(collision.tag=="Welder") {
             collision.gameObject.transform.SetParent(this.transform);
-            Debug.Log("hit tool");
+        } if(collision.tag=="ShipChunk") {
+            collision.gameObject.transform.SetParent(this.transform);
+            Debug.Log("Collided with chunk");
         }
     }
     void OnCollisionStay2D(Collision2D other){
