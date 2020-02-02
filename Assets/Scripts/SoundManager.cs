@@ -14,6 +14,12 @@ public class SoundManager : MonoBehaviour
     public AudioClip itemGetClip;
     public AudioClip damageClip;
     public AudioClip drillClip;
+
+    public AudioClip song1;
+    public AudioClip song2;
+    public AudioClip song3;
+    public AudioClip[] songs;
+
     public string lastMove = "stop";
     public static SoundManager instance = null;
 
@@ -23,6 +29,8 @@ public class SoundManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+        songs = new AudioClip[] { song1, song2, song3};
+        musicSource.clip = songs[Random.Range(0, songs.Length)];
 
         musicSource.loop = true;
 
