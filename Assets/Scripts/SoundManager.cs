@@ -56,7 +56,8 @@ public class SoundManager : MonoBehaviour
 
     public void MightAsWellJump()
     {
-        PlaySingle(playerJump);
+        if(!efxSource.isPlaying)
+            PlaySingle(playerJump);
     }
     public void ItemGet()
     {
@@ -82,7 +83,7 @@ public class SoundManager : MonoBehaviour
         //print("movetype " + moveType + " lastmove " + lastMove);
         if (moveType == "stop")
         {
-            playerMovement.loop = false; //hopefully, this will stop after the last sound. Otherwise, change this to "Stop"
+            playerMovement.Stop();// = false; //hopefully, this will stop after the last sound. Otherwise, change this to "Stop"
             lastMove = moveType;
             return;
         }
@@ -96,6 +97,7 @@ public class SoundManager : MonoBehaviour
         }
         lastMove = moveType;
         playerMovement.loop = true;
+        if(!playerMovement.isPlaying)
         playerMovement.Play();
     }
 }
