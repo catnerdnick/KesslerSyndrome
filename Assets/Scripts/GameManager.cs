@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         nextDamage = Random.Range(1,1);
+     //    SceneManager.UnloadSceneAsync("Menu");
     }
 
     // Update is called once per frame
