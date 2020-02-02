@@ -9,6 +9,7 @@ public class Spark : Damage
     private Rigidbody2D rb2D;
     private float time = 0f;
     private const float timeToTwitch = .15f;
+    public float fireChance;
     // Start is called before the first frame update
     void Start()
     {
