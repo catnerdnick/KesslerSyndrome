@@ -17,14 +17,11 @@ public class HoleInShip : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag=="ShipChunk") {
-            collision.gameObject.transform.SetParent(this.transform);
-            chunk = collision.gameObject;
-            Debug.Log("Chonker!");
-        } if(collision.tag=="Welder" && chunk !=null) {
-            Destroy(chunk);
+        Player obj = collision.GetComponent<Player>();
+        if(obj && obj.chonk && obj.toolSound) {
+            Destroy(obj.chunk);
             Destroy(this.gameObject);
-            Debug.Log("Welder!");
+            obj.chonk=false;
         }
     }
 }

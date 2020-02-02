@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     public bool indoors = true;
-    private bool toolSound;
+    public bool toolSound;
     public AudioClip ladderClip;
     public AudioClip jumpClip;
     public AudioClip itemGetClip;
@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private bool floor = false;
     private bool ladder = false;
     private Animator animator;
+    public GameObject chunk = null;
+    public bool chonk = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,10 +90,10 @@ public class Player : MonoBehaviour
                 toolSound = true;
             }
 
-        } if(collision.tag=="ShipChunk") {
+        } if(collision.tag=="ShipChunk" &&!chonk) {
             collision.gameObject.transform.SetParent(this.transform);
-  //          SoundManager.instance.ItemGet();
-            Debug.Log("Collided with chunk");
+            chunk = collision.gameObject;
+            chonk = true;
         }
     }
     void OnCollisionStay2D(Collision2D other){
