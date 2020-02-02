@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 88dcf5d5ea546ed468eb7486d6bc9d54
+guid: d294309b794cc46429e0a82b7bceeb5c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - airlockQuick: {fileID: 8300000, guid: f16b609b8f8de8f438e888c6816755b5, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
