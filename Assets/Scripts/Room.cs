@@ -9,9 +9,10 @@ public class Room : MonoBehaviour
     private SpriteRenderer renderer;
     public float oxygenLevel = 100;
 //    public List<Tool> toolList;
-    public List<Damage> damageList;
+//    public List<Damage> damageList;
     public List<Spark> sparkList;
     public bool isOnFire;
+    //something like public List<Transform> sparkLocations; //keeps track of where the sparks will go when they're generated in this room-- to be set in Inspector
 
     // Start is called before the first frame update
     void Start()
@@ -20,22 +21,12 @@ public class Room : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         oxygenLevel = 100;
         isOnFire = false;
-        damageList = new List<Damage>();
         sparkList = new List<Spark>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //assess current oxygen level after all leaks
-        if(damageList.Count > 0)
-        {
-            foreach(Damage damage in damageList)
-            {
-                oxygenLevel -= damage.O2Leakage;
-            }
-        }
-
         //check whether the room catches fire
         if (sparkList.Count > 0)
         {
@@ -73,44 +64,12 @@ public class Room : MonoBehaviour
             isOnFire = false;
         }
 
-
-        ////TODO: set the color of the room based on the oxygen level 
-        //if(oxygenLevel == 100)
-        //{
-        //    renderer.color = Color.green;
-        //}
-        //else if(oxygenLevel > 80)
-        //{
-        //    renderer.color = Color.cyan;
-        //}
-        //else if(oxygenLevel > 40)
-        //{
-        //    renderer.color = Color.yellow;
-        //}
-        //else if(oxygenLevel > 5)
-        //{
-        //    renderer.color = Color.red;
-        //}
-        //else
-        //{
-        //    renderer.color = Color.black;
-        //}
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D player)
     {
         //do something like-- 
-        //set the player's oxygen level to the room level (if the room's level is higher)
         //display something about the room, maybe? set some kind of room display active to show tools, damage, etc
-    }
-
-    //add a damage object to the room
-    public void addDamage(Damage damage)
-    {
-        damageList.Add(damage);
-
     }
 
     //add a spark object to the room, up to 2
