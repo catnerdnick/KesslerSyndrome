@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutdoorMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private const int MAX_INDOOR_SPEED = 4;
     private BoxCollider2D boxCollider;
@@ -47,6 +47,9 @@ public class OutdoorMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
             ladder = true;
+        } if(collision.tag=="Tool") {
+            collision.gameObject.transform.SetParent(this.transform);
+            Debug.Log("hit tool");
         }
     }
     void OnCollisionStay2D(Collision2D other){
