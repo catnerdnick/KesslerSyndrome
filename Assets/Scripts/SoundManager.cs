@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip itemGetClip;
     public AudioClip damageClip;
     public AudioClip drillClip;
+    public AudioClip extinguishClip;
 
     public AudioClip song1;
     public AudioClip song2;
@@ -75,6 +76,11 @@ public class SoundManager : MonoBehaviour
     public void HitClip()
     {
         PlaySingle(damageClip);
+    }
+
+    public void ExtinguishClip()
+    {
+        PlaySingle(extinguishClip);
     }
 
     public void FixClip()

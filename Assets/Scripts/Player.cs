@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     public bool indoors = true;
-    public bool toolSound;
+    public bool welder = false, extinguisher = false, ductTape = false;
     public AudioClip ladderClip;
     public AudioClip jumpClip;
     public AudioClip itemGetClip;
@@ -19,7 +19,10 @@ public class Player : MonoBehaviour
     private bool ladder = false;
     private Animator animator;
     public GameObject chunk = null;
+    public Transform welderO, extinguisherO, ductTapeO;
+    public GameObject ship;
     public bool chonk = false;
+    public float timeSincePickup = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +30,6 @@ public class Player : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        toolSound = false;
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class Player : MonoBehaviour
     {
         int horizontal = 0;
         int vertical = 0;
-
+        timeSincePickup+=Time.fixedDeltaTime;
         horizontal = (int)Input.GetAxisRaw("Horizontal");
         vertical = (int)Input.GetAxisRaw("Vertical");
         Vector3 vel = rb2D.velocity;
@@ -87,19 +89,48 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
             ladder = true;
-        } if(collision.tag=="Welder") {
-            collision.gameObject.transform.SetParent(this.transform);
-            if(!toolSound)
-            {
-                SoundManager.instance.ItemGet();
-                toolSound = true;
-            }
-
         } if(collision.tag=="ShipChunk" &&!chonk) {
             collision.gameObject.transform.SetParent(this.transform);
             chunk = collision.gameObject;
             chonk = true;
-        }
+            timeSincePickup = 0f;
+        } if(timeSincePickup>1){if(collision.tag=="Welder") {
+            welderO = collision.gameObject.transform;
+            welderO.SetParent(this.transform);
+            if(extinguisherO) extinguisherO.SetParent(ship.transform);
+            if(ductTapeO) ductTapeO.SetParent(ship.transform);
+            ductTape = extinguisher = false;
+            if(!welder)
+            {
+                SoundManager.instance.ItemGet();
+                welder = true;
+            }
+            timeSincePickup = 0f;
+        } if(collision.tag=="DuctTape") {
+            ductTapeO = collision.gameObject.transform;
+            ductTapeO.SetParent(this.transform);
+            if(welderO)welderO.SetParent(ship.transform);
+            if(extinguisherO)extinguisherO.SetParent(ship.transform);
+            welder = extinguisher = false;
+            if(!ductTape)
+            {
+                SoundManager.instance.ItemGet();
+                ductTape = true;
+            }
+            timeSincePickup = 0f;
+        } if(collision.tag=="FireExtinguisher") {
+            extinguisherO = collision.gameObject.transform;
+            extinguisherO.SetParent(this.transform);
+            if(welderO)welderO.SetParent(ship.transform);
+            if(ductTapeO)ductTapeO.SetParent(ship.transform);
+            ductTape = welder = false;
+            if(!extinguisher)
+            {
+                SoundManager.instance.ItemGet();
+                extinguisher = true;
+            }
+            timeSincePickup = 0f;
+        }}
     }
     void OnCollisionStay2D(Collision2D other){
         if(other.collider.tag=="Floor") floor=true;

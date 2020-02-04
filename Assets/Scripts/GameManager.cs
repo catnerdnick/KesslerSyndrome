@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject ship;
     public GameObject damageLine;
     public GameObject damageSprite;
+    public Fire fire;
     public HoleInShip holeSprite;
     public Text timer;
     public GameObject[] rooms;
@@ -56,14 +57,21 @@ public class GameManager : MonoBehaviour
                 dir,
                 10000000);
             SoundManager.instance.HitClip();
-            foreach(RaycastHit2D hit in hits){
-                if(hit.collider.tag == "Exterior") {
-                    HoleInShip hole = Instantiate(holeSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
-                    GameObject go = Instantiate(damageSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
-                    hole.bar = bar;
-                    go.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(Mathf.Deg2Rad*angle)/3,Mathf.Sin(Mathf.Deg2Rad*angle));
-                    bar.loseHealth();
-                }
+            ArrayList damages = new ArrayList();
+            foreach(RaycastHit2D hite in hits){
+                if(hite.collider.tag == "Exterior"||hite.collider.tag == "Floor") {damages.Add(hite);}
+            }
+            RaycastHit2D hit = (RaycastHit2D)damages[Random.Range(0,damages.Count)];
+            if(hit.collider.tag == "Exterior") {damages.Add(hit);
+                HoleInShip hole = Instantiate(holeSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
+                GameObject go = Instantiate(damageSprite, new Vector3(hit.point.x, hit.point.y, 5), Quaternion.identity);
+                hole.bar = bar;
+                go.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(Mathf.Deg2Rad*angle)/3,Mathf.Sin(Mathf.Deg2Rad*angle));
+                bar.loseHealth();
+            }if(hit.collider.tag == "Floor") {
+                Fire hole = Instantiate(fire, new Vector3(hit.point.x, hit.point.y+.5f, 5), Quaternion.identity);
+                hole.bar = bar;
+                bar.loseHealth();
             }
         }
     }
