@@ -60,13 +60,13 @@ public class Player : MonoBehaviour
                 rb2D.MovePosition(new Vector2(rb2D.position.x, rb2D.position.y+Input.GetAxisRaw("Vertical")/13));
                 SoundManager.instance.PlayerMovement("ladder");
             }
-            if (floor && vertical > 0)
+            else if (floor && vertical > 0)
             {
                 floor = false;
                 SoundManager.instance.PlayerMovement("stop");
                 SoundManager.instance.MightAsWellJump();
             }
-            if (rb2D.velocity.x <-.2) {
+            else if (rb2D.velocity.x <-.2) {
                 animator.SetBool("Moving", true);
                 spriteRenderer.flipX = true;
                 SoundManager.instance.PlayerMovement("walk");
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
             ladder = true;
+           // Debug.Log("entered ladder");
         } if(collision.tag=="ShipChunk" &&!chonk) {
             collision.gameObject.transform.SetParent(this.transform);
             chunk = collision.gameObject;
@@ -143,6 +144,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
             ladder = false;
+           // Debug.Log("left ladder");
         }
     }
 }

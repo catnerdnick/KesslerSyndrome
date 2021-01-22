@@ -97,21 +97,26 @@ public class SoundManager : MonoBehaviour
         //print("movetype " + moveType + " lastmove " + lastMove);
         if (moveType == "stop")
         {
+           // Debug.Log("stop");
             playerMovement.Stop();// = false; //hopefully, this will stop after the last sound. Otherwise, change this to "Stop"
             lastMove = moveType;
             return;
         }
         else if(moveType == "ladder")
         {
+            //Debug.Log("ladder");
             playerMovement.clip = playerLadder;
         }
         else if(moveType == "walk")
         {
+           // Debug.Log("walk");
             playerMovement.clip = playerWalk;
         }
         lastMove = moveType;
         playerMovement.loop = true;
         if(!playerMovement.isPlaying)
-        playerMovement.Play();
+        {
+            playerMovement.Play();
+        }
     }
 }
