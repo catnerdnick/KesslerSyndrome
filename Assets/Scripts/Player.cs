@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private const int MAX_INDOOR_SPEED = 4;
+    private const int MAX_INDOOR_SPEED = 6;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
@@ -92,12 +92,14 @@ public class Player : MonoBehaviour
            // Debug.Log("entered ladder");
         } if(collision.tag=="ShipChunk" &&!chonk) {
             collision.gameObject.transform.SetParent(this.transform);
+            collision.gameObject.transform.localPosition = new Vector3(-0.7f, 0.6f, 0);
             chunk = collision.gameObject;
             chonk = true;
             timeSincePickup = 0f;
         } if(timeSincePickup>1){if(collision.tag=="Welder") {
             welderO = collision.gameObject.transform;
             welderO.SetParent(this.transform);
+            welderO.localPosition = new Vector3(1f, 0.6f, 0);
             if(extinguisherO) extinguisherO.SetParent(ship.transform);
             if(ductTapeO) ductTapeO.SetParent(ship.transform);
             ductTape = extinguisher = false;
@@ -110,6 +112,7 @@ public class Player : MonoBehaviour
         } if(collision.tag=="DuctTape") {
             ductTapeO = collision.gameObject.transform;
             ductTapeO.SetParent(this.transform);
+            ductTapeO.localPosition = new Vector3(0.7f, 0.6f, 0);
             if(welderO)welderO.SetParent(ship.transform);
             if(extinguisherO)extinguisherO.SetParent(ship.transform);
             welder = extinguisher = false;
@@ -122,6 +125,7 @@ public class Player : MonoBehaviour
         } if(collision.tag=="FireExtinguisher") {
             extinguisherO = collision.gameObject.transform;
             extinguisherO.SetParent(this.transform);
+            extinguisherO.localPosition = new Vector3(0.7f, 0.6f, 0);
             if(welderO)welderO.SetParent(ship.transform);
             if(ductTapeO)ductTapeO.SetParent(ship.transform);
             ductTape = welder = false;

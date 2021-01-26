@@ -728,7 +728,7 @@ MonoBehaviour:
   airlockQuick: {fileID: 8300000, guid: f16b609b8f8de8f438e888c6816755b5, type: 3}
   playerMovement: {fileID: 413415854}
   playerWalk: {fileID: 8300000, guid: 6a6ddedefdd993647921b1afb59bfbc7, type: 3}
-  playerLadder: {fileID: 8300000, guid: 9b12282e5ad633445bcf143baf520275, type: 3}
+  playerLadder: {fileID: 8300000, guid: 3b6680b2af503704ea7b4ca4e282f3b9, type: 3}
   playerJump: {fileID: 8300000, guid: a3ef5cd5733a7684d9b43107a359c203, type: 3}
   itemGetClip: {fileID: 8300000, guid: 9c5ea0816c8dde847a13f3ea2704ab52, type: 3}
   damageClip: {fileID: 8300000, guid: b2fe390c6030a5f49b3dd3391ff79911, type: 3}

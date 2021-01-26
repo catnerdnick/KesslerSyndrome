@@ -15,7 +15,11 @@ public class HealthBar : MonoBehaviour
 
     public void loseHealth() {
         health--;
-        if(health<0) Time.timeScale =0;
+        if(health<0) 
+        {
+            Time.timeScale =0;
+            health = 0;
+        }
         renderer.sprite = sprites[10-health];
     }
     public void gainHealth(){
