@@ -436,7 +436,7 @@ PrefabInstance:
     - target: {fileID: 4295932257115489383, guid: 110351fd85606134fa223801ef0f8706,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4295932257115489383, guid: 110351fd85606134fa223801ef0f8706,
         type: 3}
@@ -943,7 +943,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &413415854
 AudioSource:
@@ -1570,6 +1570,7 @@ MonoBehaviour:
   itemGetClip: {fileID: 0}
   footstepClip: {fileID: 0}
   chunk: {fileID: 0}
+  PopupE: {fileID: 9145998991887515881, guid: a6edbce49f3a8004e80cb626e84c5815, type: 3}
   welderO: {fileID: 0}
   extinguisherO: {fileID: 0}
   ductTapeO: {fileID: 0}
@@ -1948,7 +1949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1128609739
 PrefabInstance:
@@ -2746,7 +2747,7 @@ PrefabInstance:
     - target: {fileID: 4295932257115489383, guid: 110351fd85606134fa223801ef0f8706,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4295932257115489383, guid: 110351fd85606134fa223801ef0f8706,
         type: 3}

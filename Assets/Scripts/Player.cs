@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private bool ladder = false;
     private Animator animator;
     public GameObject chunk = null;
+    public GameObject PopupE;
     public Transform welderO, extinguisherO, ductTapeO;
     public GameObject ship;
     public bool chonk = false;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         int horizontal = 0;
         int vertical = 0;
         timeSincePickup+=Time.fixedDeltaTime;
@@ -85,6 +87,31 @@ public class Player : MonoBehaviour
                 
             }
         }
+            if(Input.GetKey("e") && indoors && timeSincePickup > 1)
+        {
+            if(extinguisher) 
+            {
+                extinguisherO.SetParent(ship.transform);
+                extinguisher = false;
+
+            }
+            if(ductTape) 
+            {
+                ductTapeO.SetParent(ship.transform);
+                ductTape = false;
+
+            }
+            if(welder)
+            {
+                welderO.SetParent(ship.transform);
+                welder = false;
+
+            }
+
+            
+
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag=="Ladder") {
@@ -96,7 +123,23 @@ public class Player : MonoBehaviour
             chunk = collision.gameObject;
             chonk = true;
             timeSincePickup = 0f;
-        } if(timeSincePickup>1){if(collision.tag=="Welder") {
+        } 
+
+        if(collision.tag=="Welder"&& !welder || collision.tag=="DuctTape"&& !ductTape || collision.tag=="FireExtinguisher"&& !extinguisher)
+        {
+            //instantiate E sequence
+            
+            GameObject E = Instantiate(PopupE,new Vector3(rb2D.position.x, rb2D.position.y+1f, 5),Quaternion.identity);
+            E.gameObject.transform.SetParent(this.transform);
+        }
+    }
+
+private void OnTriggerStay2D(Collider2D collision) {
+            if(Input.GetKey("e"))
+        {
+           // Debug.Log("you hit e what do you want a medal");
+
+    if(timeSincePickup>1){if(collision.tag=="Welder") {
             welderO = collision.gameObject.transform;
             welderO.SetParent(this.transform);
             welderO.localPosition = new Vector3(1f, 0.6f, 0);
@@ -135,10 +178,13 @@ public class Player : MonoBehaviour
                 extinguisher = true;
             }
             timeSincePickup = 0f;
-        }}
-    }
+        }}}
+    
+}
+
     void OnCollisionStay2D(Collision2D other){
         if(other.collider.tag=="Floor") floor=true;
+
     }
     void OnCollisionExit2D(Collision2D   other){
       if(other.collider.tag == "Floor"){
