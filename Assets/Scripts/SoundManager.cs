@@ -24,6 +24,8 @@ public class SoundManager : MonoBehaviour
     public string lastMove = "stop";
     public static SoundManager instance = null;
 
+    private float score;
+
     void Awake()
     {
         if (instance == null)
@@ -118,5 +120,16 @@ public class SoundManager : MonoBehaviour
         {
             playerMovement.Play();
         }
+    }
+
+    public void setScore(float score) 
+    {
+        this.score = score;
+    }
+
+    public int getScore()
+    {
+        //return 125;
+        return (int) score;
     }
 }

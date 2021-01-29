@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SparkTest.unity
     guid: 48a6503d0daf8094085741871b20ae30
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: bdef71184c95b51409840b6f65ca2328
   m_configObjects: {}
